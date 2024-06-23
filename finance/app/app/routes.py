@@ -1,9 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session, jsonify
 import requests
 
-# ui
-UI = "https://www.youtube.com/watch?v=5uaHMmcReI0"
-
 API = "http://api:5000"
 
 main = Blueprint('main', __name__)

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Broken finance chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chatbot.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="header">
+            <div class="user-info">
+                <img src="{{ url_for('static', filename='image/chatbot.webp') }}" alt="User Profile" class="profile-image">
+                <div class="user-details">
+                    <h2>chatbot</h2>
+                    <p>hi</p>
+                </div>
+            </div>
+        </div>
+        <div id="chat-box"></div>
+        <form id="chat-form">
+            <input type="text" id="message" name="message" required placeholder="Type your message...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+    <a href="{{ url_for('main.logout') }}" class="logout-btn">Logout</a>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+</body>
+</html>

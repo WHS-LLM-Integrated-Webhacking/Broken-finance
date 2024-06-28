@@ -1,0 +1,33 @@
+FROM ubuntu:22.04
+
+ENV TZ Asia/Seoul
+ENV PYTHONENCODING UTF-8
+ENV LC_TYPE C.UTF-8
+ARG DEBIAN_FRONTEND=noninteractive
+
+WORKDIR /app
+
+COPY . /app
+
+RUN sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+RUN apt update && apt upgrade -y
+RUN apt-get dist-upgrade
+RUN apt-get update
+
+RUN apt-get install sudo -y
+RUN sudo apt install python3 python3-pip python3-dev -y
+RUN python3 -m pip install --upgrade pip
+RUN sudo apt-get install mysql-server -y
+
+COPY wait-for-it.sh /wait-for-it.sh
+RUN sudo chmod +x /wait-for-it.sh
+
+RUN pip install --upgrade pip
+RUN pip install flask mysql-connector-python jwt werkzeug
+RUN pip install requests
+
+ENV FLASK_RUN_HOST=0.0.0.0
+
+EXPOSE 8000
+
+CMD ["/wait-for-it.sh", "db:3306", "--", "python3", "run.py"]

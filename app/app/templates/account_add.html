@@ -1,0 +1,31 @@
+{% block content %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>은행 계좌 생성</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/account_add.css') }}">
+</head>
+<body>
+    <div class="container">
+        <form id="account-form" method="POST" action="{{ url_for('main.add_account') }}">
+            <h1>계좌 생성</h1>
+            <div class="form-group">
+                <label for="account_name" id="account_name" name="account_name">계좌명</label>       
+                <input type="text" id="account_name" name="account_name" required>
+            </div>
+            <div class="form-group">
+                <label for="account_type" id="'account_type" name="account_type">계좌 유형</label>
+                <select id="account_type" name="account_type" required>
+                    <option value="">선택하세요</option>
+                    <option value="savings">저축</option>
+                    <option value="checking">당좌</option>
+                </select>
+            </div>
+            <button type="submit">계좌 생성</button>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}

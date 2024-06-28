@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>계좌 목록</h1>
+            <button onclick="location.href='{{ url_for('main.logout') }}'">로그아웃</button>
+        </div>
+        <ul class="account-list">
+            {% for account in accounts %}
+                <li>
+                    <span>계좌ID<a href="{{ url_for('main.transactions', account_id=account.account_id) }}">{{ account.account_id }}</a></span>
+                    <span>{{ account.account_name }}</span>
+                    <span>잔액: {{ account.balance }}원</span>
+                    <span>생성일: {{ account.created_at }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="buttons">
+            <button onclick="location.href='{{ url_for('main.add_account') }}'">계좌 추가</button>
+            <button onclick="location.href='{{ url_for('main.support') }}'">챗봇</button>
+        </div>
+    </div>
+</body>
+</html>

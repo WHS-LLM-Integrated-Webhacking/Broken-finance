@@ -10,5 +10,4 @@ def contact_support(current_user):
     data = request.get_json()
     name = current_user[1]
     message = data['message']
-    # return jsonify({'response': llm_web_retriever(name, message)}), 201
     return jsonify(llm_web_retriever(name, message, current_user[0])), 201

@@ -1,6 +1,5 @@
 from flask import Flask, request, redirect
 from flask_headers import *
-# flask-headers
 app = Flask(__name__)
 
 @app.route('/')

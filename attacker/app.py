@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    url = request.args.get('url')
+    url = request.args.get('url', 'http://127.0.0.1/api/customers/get')
     access_token = request.headers.get('x-access-token')
     
     if not access_token: return {"response": "Access token is missing!"}, 400
